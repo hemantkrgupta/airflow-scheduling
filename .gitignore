@@ -1,4 +1,4 @@
-.gitpod.yml
+./.gitpod.yml
 logs/*
 
 # Byte-compiled / optimized / DLL files
