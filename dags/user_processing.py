@@ -3,6 +3,7 @@ from airflow.providers.sqlite.operators.sqlite import SqliteOperator
 from airflow.providers.http.sensors.http import HttpSensor
 from airflow.providers.http.operators.http import SimpleHttpOperator
 from airflow.operators.python import PythonOperator
+from airflow.operators.bash import BashOperator
 from datetime import datetime
 import json
 from pandas import json_normalize
@@ -64,6 +65,11 @@ with DAG('user_processing', schedule_interval = '@daily',
     processingUser = PythonOperator(
         task_id = "processing_user",
         python_callable = _processing_user
+    )
+    
+    storingUser = BashOperator(
+        task_id = "storing_user",
+        bash_command = 'echo -e ".separator ","\n.import /tmp/processed_user.csv users" | sqlite3 /opt/airflow/airflow.db'
     )
     
     
