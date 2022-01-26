@@ -72,4 +72,6 @@ with DAG('user_processing', schedule_interval = '@daily',
         bash_command = 'echo -e ".separator ","\n.import /tmp/processed_user.csv users" | sqlite3 /opt/airflow/airflow.db'
     )
     
+    creatingTable >> isApiAvail >> extractUser >> processingUser >> storingUser
+    
     
