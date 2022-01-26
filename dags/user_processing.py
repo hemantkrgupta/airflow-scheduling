@@ -20,7 +20,7 @@ def _processing_user(ti):
         print(users)
         raise ValueError("User is empty")
     print(users)
-    user = users[0]['results'][0]
+    user = users['results'][0]
     processed_user = json_normalize({
         "firstname": user["name"]["first"],
         "lastname": user["name"]["last"],
