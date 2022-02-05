@@ -4,6 +4,7 @@ from airflow.providers.http.sensors.http import HttpSensor
 from airflow.providers.http.operators.http import SimpleHttpOperator
 from airflow.operators.python import PythonOperator
 from airflow.operators.bash import BashOperator
+from airflow.utils.edgemodifier import Label
 from datetime import datetime
 import json
 from pandas import json_normalize
@@ -75,6 +76,6 @@ with DAG('user_processing', schedule_interval = '@daily',
         bash_command = 'echo -e ".separator ","\n.import /tmp/processed_user.csv users" | sqlite3 /opt/airflow/airflow.db'
     )
     
-    createTable >> isApiAvail >> extractUser >> processingUser >> storingUser
+    createTable >> Label("created") >> isApiAvail >> Label("available") >> extractUser >> Label("extracted") >> processingUser >> Label("processed") >> storingUser
     
     
