@@ -1,11 +1,11 @@
-from airflow.providers.bash import BashOperator
+from airflow.operators.bash import BashOperator
 from airflow.models import DAG
 from datetime import datetime
 
 with DAG(
-    dag_id = "parallel_dag",
+    "parallel_dag",
     schedule_interval = "@daily",
-    default_args = {"start_date" =datetime("2022-01-01")},
+    default_args = {"start_date" : datetime(2022,1,1)},
     catchup = False
     ) as dag:
     
