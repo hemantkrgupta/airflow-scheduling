@@ -3,11 +3,11 @@ This repository contains different airflow dags to demonstrate working with airf
 
 ## Run airflow on Gitpod using Docker
 In this project, we will be running airflow on Gitpod using Docker. An easy to follow procedure is already available on the official website of docker, which shows how to run airflow using Docker. Link is present in references. Otherwise, following commands can be used to start airflow:
-1. curl -LfO 'https://airflow.apache.org/docs/apache-airflow/2.2.3/docker-compose.yaml'
-2. mkdir -p ./dags ./logs ./plugins
-3. echo -e "AIRFLOW_UID=$(id -u)" > .env
-4. docker-compose up airflow-init
-5. docker-compose up
+1. `curl -LfO 'https://airflow.apache.org/docs/apache-airflow/2.2.3/docker-compose.yaml'`
+2. `mkdir -p ./dags ./logs ./plugins`
+3. `echo -e "AIRFLOW_UID=$(id -u)" > .env`
+4. `docker-compose up airflow-init`
+5. `docker-compose up`
 
 After this, hopefully your airflow would be up and running. You can go to airflow UI and enter username and password as airflow. Here you will be able to see all the example dags.
 
@@ -17,6 +17,7 @@ We have a user processing dag, in which we have five tasks. Following are the ta
 3. Extract the user data.
 4. Process user data.
 5. Store user data.
+
 In the user_processing dag, a DB and an HTTP connection is being used. First we will create the database to use and then we will create these connections. 
 ## Create Database
 To create a database, go to worker container using
